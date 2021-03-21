@@ -1,4 +1,4 @@
 # LibInMemoryFileSystem
 In Memory File Systems  
   
-Contains an implementation of a cloakroom pattern with ability to backup/restore.
+Contains an implementation of a generic cloakroom pattern with ability to backup/restore.
