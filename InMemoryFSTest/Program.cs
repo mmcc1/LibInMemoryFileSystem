@@ -7,7 +7,7 @@ namespace InMemoryFSTest
 {
     class Program
     {
-        public static string version = "1.0.0";
+        public static string version = "1.0.1";
 
         static void Main(string[] args)
         {
@@ -29,9 +29,7 @@ namespace InMemoryFSTest
 
             Console.WriteLine("Saving...");
             for (int i = 0; i < samples.Length; i++)
-            {
                 guids[i] = cr.Save(Encoding.ASCII.GetBytes(samples[i]));
-            }
 
             Console.WriteLine("Reading...");
             for (int i = 0; i < results.Length; i++)
@@ -60,7 +58,6 @@ namespace InMemoryFSTest
 
             Console.WriteLine("Finished.  Press ENTER to exit.");
             Console.ReadLine();
-
         }
     }
 }
