@@ -25,7 +25,7 @@ namespace InMemoryFSTest
             };
 
 
-            Cloakroom cr = new Cloakroom();
+            CloakroomGeneric<byte[]> cr = new CloakroomGeneric<byte[]>();
 
             Console.WriteLine("Saving...");
             for (int i = 0; i < samples.Length; i++)
