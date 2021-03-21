@@ -4,17 +4,17 @@ using Newtonsoft.Json;
 
 namespace LibInMemoryFileSystem
 {
-    public class CloakroomFolderEntry
+    public class CloakroomFolderEntry<T>
     {
         public CloakroomFolderEntry()
         {
-            Files = new List<CloakroomFileEntry>();
+            Files = new List<CloakroomFileEntry<T>>();
         }
 
-        public List<CloakroomFileEntry> Files { get; set; }
+        public List<CloakroomFileEntry<T>> Files { get; set; }
     }
 
-    public class CloakroomFileEntry
+    public class CloakroomFileEntry<T>
     {
         public CloakroomFileEntry()
         {
@@ -22,26 +22,26 @@ namespace LibInMemoryFileSystem
         }
 
         public Guid Id { get; set; }
-        public byte[] FileContents { get; set; }
+        public T FileContents { get; set; }
     }
 
-    public class Cloakroom
+    public class Cloakroom<T>
     {
-        private CloakroomFolderEntry root;
+        private CloakroomFolderEntry<T> root;
 
         public Cloakroom()
         {
-            root = new CloakroomFolderEntry();
+            root = new CloakroomFolderEntry<T>();
         }
 
-        public Guid Save(byte[] data)
+        public Guid Save(T data)
         {
-            CloakroomFileEntry fe = new CloakroomFileEntry() { FileContents = data };
+            CloakroomFileEntry<T> fe = new CloakroomFileEntry<T>() { FileContents = data };
             root.Files.Add(fe);
             return fe.Id;
         }
 
-        public byte[] Read(Guid id)
+        public dynamic Read(Guid id)
         {
             for (int i = 0; i < root.Files.Count; i++)
             {
@@ -73,7 +73,7 @@ namespace LibInMemoryFileSystem
 
         public void Restore(string backup)
         {
-            root = JsonConvert.DeserializeObject<CloakroomFolderEntry>(backup);
+            root = JsonConvert.DeserializeObject<CloakroomFolderEntry<T>>(backup);
         }
     }
 }
