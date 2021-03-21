@@ -41,7 +41,7 @@ namespace LibInMemoryFileSystem
             return fe.Id;
         }
 
-        public dynamic Read(Guid id)
+        public T Read(Guid id)
         {
             for (int i = 0; i < root.Files.Count; i++)
             {
@@ -49,7 +49,7 @@ namespace LibInMemoryFileSystem
                     return root.Files[i].FileContents;
             }
 
-            return null;
+            return (T)Activator.CreateInstance(typeof(T), null);
         }
 
         public void Delete(Guid id)
