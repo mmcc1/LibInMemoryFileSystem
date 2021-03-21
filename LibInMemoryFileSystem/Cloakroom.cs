@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 
 namespace LibInMemoryFileSystem
 {
+    #region Cloakroom classes
+
     public class CloakroomFolderEntry<T>
     {
         public CloakroomFolderEntry()
@@ -24,6 +26,10 @@ namespace LibInMemoryFileSystem
         public Guid Id { get; set; }
         public T FileContents { get; set; }
     }
+
+    #endregion
+
+    #region Cloakroom implementation
 
     public class Cloakroom<T>
     {
@@ -76,4 +82,6 @@ namespace LibInMemoryFileSystem
             root = JsonConvert.DeserializeObject<CloakroomFolderEntry<T>>(backup);
         }
     }
+
+    #endregion
 }
